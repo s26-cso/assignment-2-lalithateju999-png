@@ -1,5 +1,6 @@
 .data
-fmt_int: .asciz "%d "
+fmt_int: .asciz "%d"
+fmt_sp:  .asciz " "
 fmt_nl:  .asciz "\n"
 
 .text
@@ -150,6 +151,13 @@ print_loop:
     addi a1,t2,0;
     call printf;
 
+    addi t3,s1,-1;
+    beq s7,t3,skip_space;
+
+    la a0,fmt_sp;
+    call printf;
+
+skip_space:
     addi s7,s7,1;
     j print_loop;
 
